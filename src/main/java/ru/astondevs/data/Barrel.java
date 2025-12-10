@@ -43,10 +43,10 @@ public class Barrel implements DataClass {
                 case "volume":
                     volume = Integer.parseInt(value);
                     break;
-                case "password":
+                case "stored material":
                     storedMaterial = value;
                     break;
-                case "age":
+                case "made from":
                     madeFrom = value;
                     break;
             }
@@ -76,9 +76,9 @@ public class Barrel implements DataClass {
         return new Builder();
     }
 
-    private Barrel(Integer volume, String password, String madeFrom) {
+    private Barrel(Integer volume, String storedMaterial, String madeFrom) {
         this.volume = volume;
-        this.storedMaterial = password;
+        this.storedMaterial = storedMaterial;
         this.madeFrom = madeFrom;
     }
 
@@ -96,8 +96,8 @@ public class Barrel implements DataClass {
     public String getField(String name) {
         return switch (name) {
             case "volume" -> volume.toString();
-            case "storedMaterial" -> storedMaterial;
-            case "age" -> madeFrom;
+            case "stored material" -> storedMaterial;
+            case "made from" -> madeFrom;
             default -> null;
         };
     }
