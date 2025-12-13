@@ -2,16 +2,18 @@ package ru.astondevs.data;
 
 import org.junit.Test;
 
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 //import static org.testng.Assert.assertEquals;
 //import static org.testng.Assert.assertTrue;
 
-public class UserHelperTest {
+public class BarrelHelperTest {
+
     @Test
     public void testReadsRecordsFromInputStream() {
-        UserHelper helper = new UserHelper();
-        String csvData = "name;age;password\nJohn;25;pass123\nJane;30;secret";
+        BarrelHelper helper = new BarrelHelper();
+        String csvData = "Volume;stored material;made from\n12;water;wood\n25;jin;iron";
         java.io.InputStream inputStream = new java.io.ByteArrayInputStream(csvData.getBytes());
 
         int result = helper.readRecords(inputStream);
@@ -21,8 +23,8 @@ public class UserHelperTest {
 
     @Test
     public void testWriteRecordsToOutputStream() {
-        UserHelper helper = new UserHelper();
-        String csvData = "name;password;age\nJohn;pass123;25\nJane;secret;30";
+        BarrelHelper helper = new BarrelHelper();
+        String csvData = "Volume;stored material;made from\n12;water;tree\n25;jin;iron";
         java.io.InputStream inputStream = new java.io.ByteArrayInputStream(csvData.getBytes());
         helper.readRecords(inputStream);
 
@@ -31,8 +33,8 @@ public class UserHelperTest {
 
         assertTrue(result);
         String writtenData = outputStream.toString();
-        assertEquals(writtenData.split("\n")[0], "name;password;age");
-        assertTrue(writtenData.contains("Jane;secret;30"));
-        assertTrue(writtenData.contains("John;pass123;25"));
+        assertEquals(writtenData.split("\n")[0], "volume;stored material;mage from");
+        assertTrue(writtenData.contains("25;jin;iron"));
+        assertTrue(writtenData.contains("12;water;wood"));
     }
 }

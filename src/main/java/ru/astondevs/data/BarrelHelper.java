@@ -15,15 +15,15 @@ import java.util.stream.Collectors;
 
 import static java.lang.String.join;
 
-public class UserHelper implements Helper {
+public class BarrelHelper implements Helper {
 
-    private static final List<String> cols = List.of("name","password","age");
-    private List<User> users = new ArrayList<>();
-    private Comparator comparator = Comparator.comparing(User::getName).thenComparing(User::getAge).thenComparing(User::getPassword);
+    private static final List<String> cols = List.of("volume","stored material","made from");
+    private List<Barrel> barrels = new ArrayList<>();
+    private Comparator comparator = Comparator.comparing(Barrel::getVolume).thenComparing(Barrel::getStoredMaterial).thenComparing(Barrel::getMadeFrom);
 
     @Override
     public String getExtention() {
-        return "user.csv";
+        return "barrel.csv";
     }
 
     @Override
@@ -51,12 +51,12 @@ public class UserHelper implements Helper {
                     System.out.println("File is broken");
                     return -1;
                 }
-                User user = User.newBuilder()
+                Barrel barrel = Barrel.newBuilder()
                         .addField(names[0], values[0])
                         .addField(names[1], values[1])
                         .addField(names[2], values[2])
                         .build();
-                users.add(user);
+                barrels.add(barrel);
                 count++;
             }
             return count;
@@ -67,21 +67,21 @@ public class UserHelper implements Helper {
 
     @Override
     public boolean writeRecords(OutputStream outputStream) {
-        users.sort(comparator);
+        barrels.sort(comparator);
         try {
             boolean first = true;
-            for (User user : users) {
+            for (Barrel barrel : barrels) {
                 if (first) {
                     outputStream.write(join(CSV_DELIMITER,cols).getBytes());
                     outputStream.write("\n".getBytes());
                 }
                 first = false;
-                final Map<String, String> csvRecord = user.toCsvRecord();
+                final Map<String, String> csvRecord = barrel.toCsvRecord();
                 String row = cols.stream().map(csvRecord::get).collect(Collectors.joining(CSV_DELIMITER));
                 outputStream.write(row.getBytes());
                 outputStream.write("\n".getBytes());
             }
-            users.clear();
+            barrels.clear();
             return true;
         } catch (IOException e) {
             return false;
@@ -91,14 +91,14 @@ public class UserHelper implements Helper {
     @Override
     public void setSorting(String field) {
         switch (field) {
-            case "age":
-                comparator = Comparator.comparing(User::getAge).thenComparing(User::getName).thenComparing(User::getPassword);
+            case "made from":
+                comparator = Comparator.comparing(Barrel::getMadeFrom).thenComparing(Barrel::getVolume).thenComparing(Barrel::getStoredMaterial);
                 break;
-            case "name":
-                comparator = Comparator.comparing(User::getName).thenComparing(User::getAge).thenComparing(User::getPassword);
+            case "volumee":
+                comparator = Comparator.comparing(Barrel::getVolume).thenComparing(Barrel::getMadeFrom).thenComparing(Barrel::getStoredMaterial);
                 break;
-            case "password":
-                comparator = Comparator.comparing(User::getPassword).thenComparing(User::getAge).thenComparing(User::getName);
+            case "stored material":
+                comparator = Comparator.comparing(Barrel::getStoredMaterial).thenComparing(Barrel::getMadeFrom).thenComparing(Barrel::getVolume);
                 break;
             case "special":
                 comparator = Comparator.naturalOrder(); // TODO Fix

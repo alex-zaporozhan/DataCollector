@@ -11,9 +11,3 @@ public interface Helper {
     boolean writeRecords(OutputStream outputStream); //возвращает false если произошла ошибка, нужно заканчивать приложение
     void setSorting(String field);//настраивает сортировку
 }
-
-//запись создается через builder через addField
-// new Builder addField
-//проверяю если isValued
-//если true + в список
-//если нет тогда "извините не удалось"
