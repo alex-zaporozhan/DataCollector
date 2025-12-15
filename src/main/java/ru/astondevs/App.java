@@ -1,5 +1,6 @@
 package ru.astondevs;
 
+import ru.astondevs.data.CarHelper;
 import ru.astondevs.data.UserHelper;
 import ru.astondevs.model.Helper;
 
@@ -41,6 +42,7 @@ public class App {
 
     List<Helper> helpers = new ArrayList<>();
     helpers.add(new UserHelper());
+    helpers.add(new CarHelper());
     // TODO Add your helpers here
 
     Runnable mainThread = () -> {
