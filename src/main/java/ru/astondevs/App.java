@@ -42,7 +42,7 @@ public class App {
 
     List<Helper> helpers = new ArrayList<>();
     helpers.add(new UserHelper());
-    helpers.add(new StudentHelper());
+    helpers.add(new CarHelper());
     // TODO Add your helpers here
 
     Runnable mainThread = () -> {
