@@ -6,14 +6,8 @@ import java.io.OutputStream;
 
 public interface Helper {
     String CSV_DELIMITER = ";";
-    String getExtention(); //должен возвращять расширение файлов
-    int readRecords(InputStream inputStream); //-1 произошла ошибка; 0 нет записи; или число записей которые прочитали
-    boolean writeRecords(OutputStream outputStream); //возвращает false если произошла ошибка, нужно заканчивать приложение
-    void setSorting(String field);//настраивает сортировку
+    String getExtention();
+    int readRecords(InputStream inputStream);
+    boolean writeRecords(OutputStream outputStream);
+    void setSorting(String field);
 }
-
-//запись создается через builder через addField
-// new Builder addField
-//проверяю если isValued
-//если true + в список
-//если нет тогда "извините не удалось"

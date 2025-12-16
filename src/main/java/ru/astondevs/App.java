@@ -1,5 +1,8 @@
 package ru.astondevs;
 
+import ru.astondevs.data.BarrelHelper;
+import ru.astondevs.data.CarHelper;
+import ru.astondevs.data.StudentHelper;
 import ru.astondevs.data.UserHelper;
 import ru.astondevs.model.Helper;
 
@@ -12,6 +15,19 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+//Приложение работает следующим образом:
+//1 -- После запуска пользователь сбрасывает по одному или все сразу файлы
+//2 -- из папки CSV_files в папку ./work/source
+//3 -- рабочий цикл поглощает каждый файл, сортирует, записывает в новый и сохраняет в папку ./work/target
+//4 -- все файлы входящие сбрасываются в папку ./work/trash
+//5 -- пользователь нажал на Stop_App и программа выключилась
+//Сведения:
+//при повторном сбросе файла одного и того же класса, он собирает и старые и новые данные в новый файл data.user.csv
+//в папке CSV_files есть папки WRONG которые специально должны прервать цикл и демонстрировать не совершенство системы
+//*практически все дополнительные задачи учтены и выполнены
+//Авторы: Проект создавали Александр Запорожан, Никита Шабатура, Виталий Юнев, Максим Бельдяев
+//ссылка на GitHub в открытом доступе: https://github.com/alex-zaporozhan/DataCollector
 
 public class App {
 
@@ -41,6 +57,9 @@ public class App {
 
     List<Helper> helpers = new ArrayList<>();
     helpers.add(new UserHelper());
+    helpers.add(new BarrelHelper());
+    helpers.add(new CarHelper());
+    helpers.add(new StudentHelper());
     // TODO Add your helpers here
 
     Runnable mainThread = () -> {

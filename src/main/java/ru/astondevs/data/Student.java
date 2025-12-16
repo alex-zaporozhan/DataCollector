@@ -72,17 +72,6 @@ public class Student implements DataClass {
         }
     }
 
-//    public static Builder newBuilder() {
-//        return new Builder();
-//    }
-
-//    private Student(String groupNumber, double averageScore, String recordBookNumber) {
-//        this.groupNumber = groupNumber;
-//        this.averageScore = averageScore;
-//        this.recordBookNumber = recordBookNumber;
-//    }
-
-
     //Методы DataClass
     @Override
     public boolean isValid() {
@@ -131,3 +120,4 @@ public class Student implements DataClass {
         return recordBookNumber;
     }
 }
+

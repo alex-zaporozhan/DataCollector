@@ -102,7 +102,7 @@ public class UserHelper implements Helper {
         comparator = Comparator.comparing(User::getPassword).thenComparing(User::getAge).thenComparing(User::getName);
         break;
       case "special":
-        comparator = Comparator.naturalOrder(); // TODO Fix
+        comparator = Comparator.naturalOrder();
         break;
     }
   }
