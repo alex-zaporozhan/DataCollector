@@ -13,7 +13,7 @@ public class BarrelHelperTest {
     @Test
     public void testReadsRecordsFromInputStream() {
         BarrelHelper helper = new BarrelHelper();
-        String csvData = "Volume;stored material;made from\n12;water;wood\n25;jin;iron";
+        String csvData = "Volume;stored material;made from\n40;water;wood\n37;rom;plastic";
         java.io.InputStream inputStream = new java.io.ByteArrayInputStream(csvData.getBytes());
 
         int result = helper.readRecords(inputStream);
@@ -24,7 +24,7 @@ public class BarrelHelperTest {
     @Test
     public void testWriteRecordsToOutputStream() {
         BarrelHelper helper = new BarrelHelper();
-        String csvData = "Volume;stored material;made from\n12;water;tree\n25;jin;iron";
+        String csvData = "Volume;stored material;made from\n40;water;wood\n37;rom;plastic";
         java.io.InputStream inputStream = new java.io.ByteArrayInputStream(csvData.getBytes());
         helper.readRecords(inputStream);
 
@@ -34,7 +34,7 @@ public class BarrelHelperTest {
         assertTrue(result);
         String writtenData = outputStream.toString();
         assertEquals(writtenData.split("\n")[0], "volume;stored material;mage from");
-        assertTrue(writtenData.contains("25;jin;iron"));
-        assertTrue(writtenData.contains("12;water;wood"));
+        assertTrue(writtenData.contains("37;rom;plastic"));
+        assertTrue(writtenData.contains("40;water;wood"));
     }
 }

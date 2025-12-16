@@ -23,7 +23,7 @@ public class UserHelper implements Helper {
 
     @Override
     public String getExtention() {
-        return "user.csv";
+        return "barrel.csv";
     }
 
     @Override
